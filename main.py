@@ -62,7 +62,6 @@ def add_tracks_to_playlist(playlist_id, track_uris, access_token):
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
-
     payload = {
         "uris": track_uris
     }
