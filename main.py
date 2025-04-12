@@ -56,24 +56,22 @@ def search_track(song_title, access_token):
 
 # ------------------------------------------------------------ Function to Add Tracks to Playlist ------------------------------------------------------------ ##
 def add_tracks_to_playlist(playlist_id, track_uris, access_token):
-    """Add a list of track URIs to a Spotify playlist"""
+    """Add tracks to a Spotify playlist"""
     add_tracks_url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
-    # Add the tracks in batches of 100 (API limitation)
-    for i in range(0, len(track_uris), 100):
-        track_batch = track_uris[i:i + 100]
-        payload = {
-            "uris": track_batch
-        }
-        response = requests.post(add_tracks_url, headers=headers, json=payload)
-        if response.status_code == 201:
-            print(f"Successfully added {len(track_batch)} tracks to the playlist.")
-        else:
-            print(f"Failed to add tracks. Error: {response.status_code}")
-        sleep(1)  # Avoid hitting rate limits
+
+    payload = {
+        "uris": track_uris
+    }
+    response = requests.post(add_tracks_url, headers=headers, json=payload)
+
+    if response.status_code == 201:
+        print(f"Successfully added {len(track_uris)} tracks to the playlist.")
+    else:
+        print(f"Failed to add tracks. Error: {response.status_code}")
 
 
 # ------------------------------------------------------------ Main Function ------------------------------------------------------------ ##
