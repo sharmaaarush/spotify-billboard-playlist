@@ -78,9 +78,8 @@ USER_ID=your_spotify_user_id
 ```
 spotify-playlist-from-billboard/
 │
-├── gui.py              # GUI logic using tkinter
-├── main.py             # Core playlist creation flow
-├── api_setup.py        # Spotify API authentication and token refresh
+├── main.py              # GUI logic using tkinter
+├── api_setup.py        # Spotify API authentication, token refresh and core playlist creation flow
 ├── image.gif           # GIF used in the GUI
 ├── .env                # Environment variables (credentials)
 └── README.md           # Project documentation
