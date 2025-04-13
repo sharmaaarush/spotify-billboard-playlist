@@ -53,8 +53,8 @@ def add_tracks_to_playlist(playlist_id, track_uris, access_token):
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
-    payload = {"uris": track_uris}
-    response = requests.post(add_tracks_url, headers=headers, json=payload)
+    track_data = {"uris": track_uris}
+    response = requests.post(add_tracks_url, headers=headers, json=track_data)
 
     if response.status_code == 201:
         print(f"✅ Successfully added {len(track_uris)} tracks to the playlist.")
