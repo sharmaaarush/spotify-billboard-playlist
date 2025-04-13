@@ -1,5 +1,8 @@
 # 🎧 Spotify Playlist Creator from Billboard Hot 100 (GUI Version)
 
+![image](https://github.com/user-attachments/assets/71b475f5-e97c-4555-a0c6-5d01f2691ba8)
+
+![Screenshot 2025-04-12 at 11 13 07 pm](https://github.com/user-attachments/assets/7aeea3d7-a2c4-41ac-84e0-d121f3b7d6be)
 ![Spotify](image.gif)
 
 This project allows you to automatically create a Spotify playlist based on the Billboard Hot 100 chart for any date after 2020 using a simple graphical interface (GUI). It integrates:
