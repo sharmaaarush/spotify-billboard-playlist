@@ -16,6 +16,7 @@ REFRESH_TOKEN = os.getenv("REFRESH_TOKEN")
 
 scope = "playlist-modify-public playlist-modify-private"
 
+
 # ------------------------------------------------------------ Spotify Token Refresh  ------------------------------------------------------------ ##
 refresh_token_url = "https://accounts.spotify.com/api/token"
 refresh_token_headers = {
