@@ -1,134 +1,170 @@
-# 🎧 Spotify Playlist Creator from Billboard Hot 100
+# 🎧 Spotify Playlist Creator from Billboard Hot 100 (GUI Version)
 
-This Python project allows you to automatically create a Spotify playlist from Billboard's Hot 100 chart for any given date (after 2020). Using the Spotify API and BeautifulSoup for web scraping, it searches for the top 100 songs from the specified date, adds them to a new Spotify playlist, and shares the playlist URL with you.
+![Spotify](image.gif)
 
-## 📚 Table of Contents
-- [📌 Project Overview](#-project-overview)
-- [🛠️ Prerequisites](#-prerequisites)
-- [⚙️ Setup](#-setup)
-- [🔐 How to Access Credentials](#-how-to-access-credentials)
-- [🚀 How to Use](#-how-to-use)
-- [🧠 Functions](#-functions)
-- [📄 License](#-license)
-- [🙌 Credits](#-credits)
+This project allows you to automatically create a Spotify playlist based on the Billboard Hot 100 chart for any date after 2020 using a simple graphical interface (GUI). It integrates:
+
+- 🎨 `tkinter` for a modern and interactive interface  
+- 🧼 `BeautifulSoup` to scrape Billboard songs  
+- 🎵 `Spotify's Web API` to search tracks and create playlists on your account  
+
+---
 
 ## 📌 Project Overview
 
-The main goal of this project is to create a Spotify playlist based on the Billboard Hot 100 chart for any specific date. The process includes:
+### 💡 What It Does:
+- Opens a GUI window asking for a date (`YYYY-MM-DD`)  
+- Scrapes Billboard Hot 100 chart for that date  
+- Authenticates with Spotify using your credentials  
+- Searches those songs on Spotify  
+- Creates a new **private** playlist in your account  
+- Adds all the matched songs to it  
+- Gives you the **link to the Spotify playlist**  
 
-1. Fetching the Billboard Hot 100 for the given date  
-2. Searching for the corresponding songs on Spotify  
-3. Creating a new playlist on Spotify  
-4. Adding the songs to the created playlist  
-5. Providing the URL to access the playlist  
+So you get a Spotify playlist that reflects the top songs from any day in music history (post-2020).
+
+---
 
 ## 🛠️ Prerequisites
 
-Before running the project, make sure you have:
+### ✅ Installed Software:
+- Python 3.x  
+- Pip package manager  
 
-- Python 3.x installed  
-- `pip` for installing dependencies  
-- A Spotify Developer Account for API credentials  
-- Billboard Hot 100 data available (works for any date after 2020)  
-
-### 📦 Required Python Packages
-
-Install the required packages with:
+### ✅ Required Python Packages:
+Install them using:
 
 ```bash
 pip install requests beautifulsoup4 python-dotenv
 ```
 
-## ⚙️ Setup
+---
 
-### 📁 Clone the Repository
+## ⚙️ Project Setup
 
+### 📁 Clone the Repo
 ```bash
-git clone https://github.com/your-username/spotify-playlist-from-billboard.git
+git clone https://github.com/your-username/spotify-playlist-from-billboard
 cd spotify-playlist-from-billboard
 ```
 
-### 📝 Create a .env File
+### 📷 Assets
+Keep the `image.gif` file in the project folder. It is used as a background image in your GUI.
 
-In the project root, create a `.env` file and add the following environment variables:
+---
+
+### 🔐 Environment Variables (Sensitive Info)
+
+Create a `.env` file and paste your Spotify credentials like this:
 
 ```
 CLIENT_ID=your_spotify_client_id
 CLIENT_SECRET=your_spotify_client_secret
-REDIRECT_URI=your_redirect_uri
+REDIRECT_URI=http://localhost:8888/callback
 ACCESS_TOKEN=your_access_token
-USER_ID=your_spotify_user_id
 REFRESH_TOKEN=your_refresh_token
+USER_ID=your_spotify_user_id
 ```
 
-### ✅ Install the Required Dependencies
+📝 You can get these credentials by creating an app on the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
 
-```bash
-pip install -r requirements.txt
+---
+
+## 🧠 Project Structure and Files
+
+```
+spotify-playlist-from-billboard/
+│
+├── gui.py              # GUI logic using tkinter
+├── main.py             # Core playlist creation flow
+├── api_setup.py        # Spotify API authentication and token refresh
+├── image.gif           # GIF used in the GUI
+├── .env                # Environment variables (credentials)
+└── README.md           # Project documentation
 ```
 
-## 🔐 How to Access Credentials
+---
 
-### 🧑‍💻 Spotify Developer Account
+## 🖼️ GUI: What the User Sees
 
-To get the required credentials (`CLIENT_ID`, `CLIENT_SECRET`, and `USER_ID`):
-
-- Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)  
-- Create a new app to get your `CLIENT_ID` and `CLIENT_SECRET`  
-- Set your `REDIRECT_URI`  
-- Use Spotify’s Authorization Flow to get your `ACCESS_TOKEN` and `REFRESH_TOKEN`  
-
-### 🛡️ Set Up `.env` File
-
-Store your credentials in the `.env` file as shown above.
-
-## 🚀 How to Use
-
-### ▶️ Run the Application
+When you run the project:
 
 ```bash
 python main.py
 ```
 
-### 📆 Provide a Date
+A GUI window appears with:
 
-You’ll be prompted to enter the date in the format `YYYY-MM-DD` (after 2020) to get the Billboard Hot 100 for that date.
+- A date input field  
+- A "Create Playlist" button  
+- A fancy background animation (`image.gif`)  
 
-### 🔗 Get the Playlist Link
+After entering a valid date (e.g., `2022-08-01`) and clicking the button, it:
 
-After processing, the script will create a playlist and print the Spotify playlist URL.
-
-## 🧠 Functions
-
-### 🔍 `search_track(song_title, access_token)`
-
-**Description**: Searches for a song on Spotify and returns the track URI.  
-**Parameters**:
-- `song_title`: The name of the song  
-- `access_token`: The current Spotify access token  
-**Returns**: The URI of the song on Spotify or `None` if not found.
+- Scrapes the Billboard Top 100 songs for that day  
+- Logs in to your Spotify account  
+- Searches for matching songs  
+- Creates a playlist and adds the found songs  
+- Displays a confirmation with the playlist name and link in the terminal  
 
 ---
 
-### 🎯 `add_tracks_to_playlist(playlist_id, track_uris, access_token)`
+## 🧠 What Each File Does
 
-**Description**: Adds a list of track URIs to a Spotify playlist.  
-**Parameters**:
-- `playlist_id`: The ID of the playlist  
-- `track_uris`: A list of track URIs to be added  
-- `access_token`: The current Spotify access token
+### 🔹 `gui.py`
+- Handles GUI using tkinter  
+- Loads and displays a background GIF  
+- Collects the user input (date)  
+- Triggers playlist creation when the button is clicked  
+
+### 🔹 `main.py`
+- Orchestrates the overall flow  
+- Connects the GUI to the backend  
+- Calls functions from `api_setup.py` and uses scraped data to:
+  - Search tracks on Spotify  
+  - Create a new playlist  
+  - Add the tracks  
+
+### 🔹 `api_setup.py`
+- Handles Spotify API Authorization  
+- Gets fresh access tokens using refresh tokens  
+- Contains:
+  - `get_access_token()`  
+  - `create_playlist()`  
+  - `search_track()`  
+  - `add_tracks_to_playlist()`  
 
 ---
 
-### 🧩 `main()`
+## 🔐 How to Get Spotify Credentials
 
-**Description**: The main function that orchestrates fetching the Billboard Hot 100, creating the playlist, and adding tracks.
+1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
+2. Log in and create a new app  
+3. Copy your:
+   - `CLIENT_ID`
+   - `CLIENT_SECRET`
+4. Set `REDIRECT_URI` to: `http://localhost:8888/callback`
+5. Use a tool/tutorial to get:
+   - `ACCESS_TOKEN`
+   - `REFRESH_TOKEN`
+6. Find your `USER_ID` in your Spotify profile link
 
-## 📄 License
+Paste everything in the `.env` file as shown earlier.
 
-This project is licensed under the MIT License.
+---
 
-## 🙌 Credits
+## 🚀 How to Run
 
-Built with ❤️ by Aarush Sharma  
-Inspired by Spotify API integration and Python automation practices.
+- Ensure your `.env` file and `image.gif` are present  
+- Open terminal inside the project folder  
+- Run:
+
+```bash
+python main.py
+```
+
+🎉 A window opens — enter your date, hit "Create Playlist"  
+⌛ Wait a few seconds  
+🔗 Playlist link appears in your terminal  
+
+---
