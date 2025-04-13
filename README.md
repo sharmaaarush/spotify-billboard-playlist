@@ -1,6 +1,6 @@
 # 🎧 Spotify Playlist Creator from Billboard Hot 100 (GUI Version)
 
-![image](https://github.com/user-attachments/assets/71b475f5-e97c-4555-a0c6-5d01f2691ba8)
+<img width="794" alt="Screenshot 2025-04-13 at 10 48 04 pm" src="https://github.com/user-attachments/assets/1a052e87-3716-4b93-8a97-692fbf47ac24" />
 
 ![Screenshot 2025-04-12 at 11 13 07 pm](https://github.com/user-attachments/assets/7aeea3d7-a2c4-41ac-84e0-d121f3b7d6be)
 ![Spotify](image.gif)
